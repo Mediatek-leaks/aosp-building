@@ -5,14 +5,17 @@ rm -rf .repo & # lets remove unnecessary things, so that no storage issue can oc
 
 # Normal build steps
 . build/envsetup.sh
-lunch lineage_whyred-userdebug
+lunch revengeos_ysl-userdebug
 export SELINUX_IGNORE_NEVERALLOWS=true
+#export _JAVA_OPTIONS=-Xmx5g
 export CCACHE_DIR=/tmp/ccache
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
 ccache -M 20G
 ccache -o compression=true
 ccache -z
+
+zip=out/target/product/ysl/*zip
 
 # Telgram env setup
 export BOT_MSG_URL="https://api.telegram.org/bot$API_BOT/sendMessage"
@@ -36,13 +39,13 @@ make_metalava(){
 }
 
 make_rom(){
-	tg_post_msg "<b>Crdroidandroid CI Build Triggered for whyred</b>" "$CHATID"
+	tg_post_msg "<b>RevengeOS CI Build Triggered for ysl</b>" "$CHATID"
 	mka bacon -j16
-	if [ -f out/target/product/whyred/*zip ]; then
-		zip=$(up out/target/product/whyred/*zip)
+	if [ -f "$zip" ]; then
+		url=$(up "$zip")
 		echo " "
-		echo "$zip"
-		tg_post_msg "<b>Build Completed</b>%0A%0A<b>Link : </b> <code>"$zip"</code>" "$CHATID"
+		echo "$url"
+		tg_post_msg "<b>Build Completed</b>%0A%0A<b>Link : </b> <code>"$url"</code>" "$CHATID"
 	else
 		tg_post_msg "<b>Build Failed, check cirrus console</b>" "$CHATID"
 	fi
