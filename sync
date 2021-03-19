@@ -8,13 +8,14 @@ cd /tmp/rom
 
 # Repo init command, that -device,-mips,-darwin,-notdefault part will save you more time and storage to sync, add more according to your rom and choice. Optimization is welcomed! Let's make it quit, and with depth=1 so that no unnecessary things.
 repo init --no-repo-verify --depth=1 -u "$MANIFEST" -b "$BRANCH" -g default,-device,-mips,-darwin,-notdefault
-git config --global user.name ItsVixano
-git config --global user.email vixanonew@gmail.com
+git config --global user.name techyminati
+git config --global user.email sinha.aryan03@gmail.com
 
 # Sync source with -q, no need unnecessary messages, you can remove -q if want! try with -j30 first, if fails, it will try again with -j8
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # Sync stuffs
+git clone https://github.com/mi-msm8937/android_device_xiaomi_msm8937-common.git device/xiaomi/msm8937-common --depth=1
 git clone  https://github.com/mi-msm8937/android_device_xiaomi_tiare  device/xiaomi/tiare --depth=1
 git clone https://github.com/mi-msm8937/proprietary_vendor_xiaomi_tiare vendor/xiaomi/tiare --depth=1
 git clone https://github.com/mi-msm8937/android_kernel_xiaomi_msm8937-4.9 kernel/xiaomi/tiare-4.9 --depth=1 
