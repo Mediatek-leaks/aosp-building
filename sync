@@ -1,7 +1,7 @@
 #!/bin/bash
 
-MANIFEST=git://github.com/lineageos/android.git
-BRANCH=lineage-17.1
+MANIFEST=git://github.com/CipherOS/android_manifest.git
+BRANCH=eleven
 
 mkdir -p /tmp/rom
 cd /tmp/rom
@@ -15,8 +15,6 @@ git config --global user.email sinha.aryan03@gmail.com
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
 
 # Sync stuffs
-git clone https://github.com/mi-msm8937/android_device_xiaomi_msm8937-common.git device/xiaomi/msm8937-common --depth=1
-git clone https://github.com/mi-msm8937/proprietary_vendor_xiaomi_msm8937-common vendor/xiaomi/msm8937-common --depth=1
-git clone  https://github.com/mi-msm8937/android_device_xiaomi_tiare  device/xiaomi/tiare --depth=1
-git clone https://github.com/mi-msm8937/proprietary_vendor_xiaomi_tiare vendor/xiaomi/tiare --depth=1
-git clone https://github.com/mi-msm8937/android_kernel_xiaomi_msm8937-4.9 kernel/xiaomi/tiare-4.9 --depth=1 
+git clone https://github.com/Xiaomi-SDM439-Development/android_device_xiaomi_olives device/xiaomi/olives
+git clone https://github.com/Aghora7/main_tree device/xiaomi/sdm439-common && cd device/xiaomi/sdm439-common && git reset --hard 9f9a9c712694c3b9a1e0ad32372c5e50b3d8d8d4 && cd ../../..
+
