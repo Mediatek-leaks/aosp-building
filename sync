@@ -17,4 +17,4 @@ repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync 
 # Sync stuffs
 git clone https://github.com/Xiaomi-SDM439-Development/android_device_xiaomi_olives device/xiaomi/olives
 git clone https://github.com/Aghora7/main_tree device/xiaomi/sdm439-common && cd device/xiaomi/sdm439-common && git reset --hard 9f9a9c712694c3b9a1e0ad32372c5e50b3d8d8d4 && cd ../../..
-
+cd frameworks/base && git reset --hard b2fba547885ae173da92856a8b131bcd27e44b1b && cd ../..
